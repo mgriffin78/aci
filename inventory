@@ -1,0 +1,8 @@
+apic01.localdomain username=admin password=C1sco12345 ansible_connection=local
+apic02.localdomain username=admin password=C1sc0123 ansible_connection=local
+
+[apic]
+apic01.localdomain
+
+[all]
+apic02.localdomain

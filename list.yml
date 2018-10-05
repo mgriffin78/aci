@@ -1,0 +1,9 @@
+---
+tenants:
+ - ansible1
+ - ansible2
+ - ansible3
+ - ansible4
+ - ansible5
+ - ansible6
+

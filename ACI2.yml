@@ -1,0 +1,35 @@
+---
+- hosts: apic
+
+  tasks:
+  - name: Include list of tenants
+    include_vars:
+     file: list.yml
+
+  - name: Add a new tenant
+    aci_tenant:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     tenant: "{{ item }}"
+     description: Created By Ansible
+     state: "{{ state }}"
+     validate_certs: no
+    loop: "{{ tenants }}"
+
+  - name: Get List of All Tenants
+    aci_rest:
+     host: "{{ inventory_hostname }}"
+     username: "{{ username}}"
+     password: "{{ password }}"
+     method: get
+     path: /api/node/class/fvTenant.json
+     validate_certs: no
+    delegate_to: localhost
+    register: result
+
+  - name: debug results
+    debug:
+     var: result
+...
+
